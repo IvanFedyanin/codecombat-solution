@@ -27,3 +27,34 @@ while True:
     if hero.gold>=300:
         break
 hero.moveXY(50, 34)
+
+Двойной обман
+
+# Сначала победи 6 огров.
+# Затем собирай монеты, пока не наберёшь 30 золота.
+
+# Эта переменная считает огров.
+defeatedOgres = 0
+
+# Этот цикл выполняется, пока `defeatedOgres` меньше 6.
+while defeatedOgres < 6:
+    enemy = hero.findNearestEnemy()
+    if enemy:
+        hero.attack(enemy)
+        defeatedOgres += 1
+    else:
+        hero.say("Ogres!")
+
+# Двигайся к правой стороне карты.
+hero.moveXY(49, 36)
+
+# Этот цикл выполняется, пока у тебя меньше 30 золота.
+while hero.gold < 30:
+    # Ищи и собирай монеты.
+    item = hero.findNearestItem()
+    if item:
+        hero.moveXY(item.pos.x,item.pos.y)
+    
+
+# Двигайся к выходу.
+hero.moveXY(76, 32)
